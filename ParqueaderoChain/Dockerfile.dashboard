@@ -1,0 +1,7 @@
+FROM fedora:latest
+RUN dnf install -y golang && dnf clean all
+WORKDIR /app
+COPY ./dashboard /app
+RUN go build -o dashboard .
+EXPOSE 8081
+CMD ["./dashboard"]

@@ -1,0 +1,7 @@
+FROM fedora:latest
+RUN dnf install -y golang git && dnf clean all
+WORKDIR /app
+COPY ./parqueadero /app
+RUN go build -o parqueadero .
+EXPOSE 8080
+CMD ["./parqueadero"]

@@ -1,0 +1,44 @@
+version: '3.9'
+networks:
+  parqueo_net:
+    driver: bridge
+
+services:
+  parqueadero1:
+    build:
+      context: .
+      dockerfile: Dockerfile.parqueadero
+    container_name: parqueadero1
+    networks:
+      - parqueo_net
+    ports:
+      - "8080:8080"
+
+  parqueadero2:
+    build:
+      context: .
+      dockerfile: Dockerfile.parqueadero
+    container_name: parqueadero2
+    networks:
+      - parqueo_net
+    ports:
+      - "8081:8080"
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: dashboard
+    networks:
+      - parqueo_net
+    ports:
+      - "8082:8081"
+  coordinador:
+    build:
+      context: .
+      dockerfile: Dockerfile.coordinador
+    container_name: coordinador
+    networks:
+      - parqueo_net
+    ports:
+      - "8083:8083"

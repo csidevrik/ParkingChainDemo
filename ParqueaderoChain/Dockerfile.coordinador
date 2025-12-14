@@ -1,0 +1,7 @@
+FROM fedora:latest
+RUN dnf install -y golang && dnf clean all
+WORKDIR /app
+COPY ./coordinador /app
+RUN go build -o coordinador .
+EXPOSE 8083
+CMD ["./coordinador"]
